@@ -15,7 +15,6 @@ import com.e.eindwerk.data.db.entity.WeatherLocation
 
 abstract class ForecastDatabase : RoomDatabase() {
     abstract fun currentWeatherDao() : CurrentWeatherDao
-    abstract fun futureWeatherDao(): FutureWeatherDao
     abstract fun weatherLocationDao() : WeatherLocationDao
 
     companion object {

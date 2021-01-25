@@ -12,8 +12,6 @@ import com.e.eindwerk.data.provider.LocationProviderImpl
 import com.e.eindwerk.data.repository.ForecastRepository
 import com.e.eindwerk.data.repository.ForecastRepositoryImpl
 import com.e.eindwerk.ui.weather.current.CurrentWeatherViewModelFactory
-import com.e.eindwerk.ui.weather.future.detail.FutureDetailWeatherViewModelFactory
-import com.e.eindwerk.ui.weather.future.list.FutureListWeatherViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -27,16 +25,13 @@ class ForecastApplication : Application(), KodeinAware{
         bind() from singleton { ForecastDatabase.invoke(instance()) }
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao() }
         bind() from singleton { instance<ForecastDatabase>().weatherLocationDao() }
-        bind() from singleton { instance<ForecastDatabase>().futureWeatherDao()}
         bind<connectivityInterceptor>() with singleton { connectivityInterceptorImpl(instance()) }
         bind() from singleton { OpenWeatherApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
         bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
         bind<LocationProvider>() with singleton { LocationProviderImpl(instance(), instance()) }
-        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance(), instance()) }
+        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance()) }
-        bind() from provider { FutureListWeatherViewModelFactory(instance()) }
-        bind() from factory { detailDate: LocalDate -> FutureDetailWeatherViewModelFactory(detailDate, instance()) }
     }
 
     override fun onCreate() {
