@@ -1672,6 +1672,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable gradient_background
 drawable ic_arrow_down_24dp
 drawable ic_calendar_week
 drawable ic_launcher_background
